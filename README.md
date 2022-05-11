@@ -1,6 +1,16 @@
 # Note-Taker
 
+## Table of Contents
+
+- [Description](#description)
+- [User Story](#user-story)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Screenshots](#screenshots)
+- [Links](#links)
+
 ## Description
+
+Our assignment for this week is to modify the given starter code to create an application called Note Taker that can be used to write, save and delete notes. The application is to use an Express.js back end and it will save and retrieve note data from a JSON file. Our task is to build the back-end of the application, connect it to the given front-end of the application, and then deploy the entire application to Heroku.
 
 ## User Story
 
@@ -23,3 +33,13 @@
     THEN that note appears in the right-hand column
     WHEN I click on the Write icon in the navigation at the top of the page
     THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
+
+## Screenshots
+
+
+
+## Links
+
+Email: andynguyen_3@hotmail.com <br />
+Github: https://github.com/androneus14 <br />
+Deployed Application: <br />

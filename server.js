@@ -40,7 +40,7 @@ app.post("/api/notes", (req, res) => {
     res.json(notes);
 });
 
-// deleted any saved notes
+// delete any saved notes
 app.delete("/api/notes", (req, res) => {
     res.send("Delete saved note.");
     const notes = JSON.parse(fs.readFile("./db/db.json"));
