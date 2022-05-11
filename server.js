@@ -11,20 +11,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static('public'));
 
+
+
+// HTML calls
 // "/" refers to our homepage that we're requesting. It should bring up our index.html file under the 'public' folder that we're given.
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"));
 });
-
 // "/notes" refers to our second page entitled notes.html under the public folder that we're given.
 app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
+
+
 // gets notes saved and joins it in db.json
 app.get("/api/notes", (req, res) => {
     res.send("Retrieve previously saved notes");
-    fs.readFile(path.join(__dirname, "./db/db.json"))
+    res.sendFile(path.join(__dirname, "/db/db.json"));
 });
 
 // posts new notes and joins it in db.json
