@@ -27,24 +27,22 @@ app.get("/notes", (req, res) => {
 // gets notes saved and joins it in db.json
 app.get("/api/notes", (req, res) => {
     res.send("Retrieve previously saved notes");
-    res.sendFile(path.join(__dirname, "/db/db.json"));
+    fs.readFile(path.join(__dirname, "/db/db.json"));
+    res.json(notes);
 });
 
 // posts new notes and joins it in db.json
 app.post("/api/notes", (req, res) => {
     res.send("Write new note");
     const notes = JSON.parse(fs.readFile("./db/db.json"));
-    const newNotes = {
-        status: 'success',
-        data: req.body,
-    };
+    const newNotes = req.body;
     notes.push(newNotes);
     fs.writeFile("./db/db.json", JSON.stringify(notes))
     res.json(notes);
 });
 
 // delete any saved notes
-app.delete("/api/notes", (req, res) => {
+app.delete("/api/notes/:id", (req, res) => {
     res.send("Delete saved note.");
     const notes = JSON.parse(fs.readFile("./db/db.json"));
     const deleteNote = notes.filter((deleteNote) => deleteNote.id !==req.params.id);
