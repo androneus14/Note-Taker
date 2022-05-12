@@ -34,8 +34,8 @@ app.get("/api/notes", (req, res) => {
 app.post("/api/notes", (req, res) => {
     const newNote = req.body;
     notes.push(newNote);
-    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
-    res.json(newNote)
+    fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(notes));
+    res.json(newNote);
 });
 
 // delete any saved notes
