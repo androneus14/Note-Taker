@@ -1,6 +1,6 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 
 
@@ -26,10 +26,7 @@ app.get("/notes", (req, res) => {
 
 // gets notes saved and joins it in db.json
 app.get("/api/notes", (req, res) => {
-    fs.readFile(path.join(__dirname, "/db/db.json"), (data) => {
-        const notes = JSON.parse(data);
-        res.json(notes);
-    });
+    res.sendFile(path.join(__dirname, "./db/db.json"));
 });
 
 // posts new notes and joins it in db.json
