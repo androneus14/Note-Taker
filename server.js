@@ -27,7 +27,7 @@ app.get("/notes", (req, res) => {
 
 // gets notes saved and joins it in db.json
 app.get("/api/notes", (req, res) => {
-    res.send(notes);
+    res.sendFile(path.join(__dirname, "./db/db.json"));
 });
 
 // posts new notes and joins it in db.json
@@ -40,9 +40,9 @@ app.post("/api/notes", (req, res) => {
 
 // delete any saved notes
 app.delete("/api/notes/:id", (req, res) => {
-    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
-    const deleteNote = notes.filter((delNote) => delNote.id !==req.params.id);
-    fs.writeFileSync("./db/db.json", JSON.stringify(deleteNote));
+    const deleteNote = req.params.id;
+    notes.splice(deleteNote, 1);
+    fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(notes));
     res.json(deleteNote);
 });
 
