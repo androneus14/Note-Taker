@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const notes = require("./db/db.json");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -26,23 +27,21 @@ app.get("/notes", (req, res) => {
 
 // gets notes saved and joins it in db.json
 app.get("/api/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, "./db/db.json"));
+    res.send(notes);
 });
 
 // posts new notes and joins it in db.json
 app.post("/api/notes", (req, res) => {
-    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
     const newNote = req.body;
     notes.push(newNote);
-    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
+    fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(notes));
     res.json(newNote)
 })
 
 // delete any saved notes
 app.delete("/api/notes/:id", (req, res) => {
-    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
     const deleteNote = notes.filter((deleteNote) => deleteNote.id !==req.params.id);
-    fs.writeFileSync("./db/db.json", JSON.stringify(deleteNote));
+    fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(deleteNote));
     res.json(deleteNote);
 });
 
