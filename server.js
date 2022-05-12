@@ -31,15 +31,12 @@ app.get("/api/notes", (req, res) => {
 
 // posts new notes and joins it in db.json
 app.post("/api/notes", (req, res) => {
-    fs.readFile(path.join(__dirname, "./db/db.json"), (data) => {
-        const notes = JSON.parse(data);
-        const newNotes = req.body;
-        notes.push(newNotes);
-
-        fs.writeFile(path.join(__dirname, "./db/db.json", JSON.stringify(notes)));
-        res.json(newNotes);
-    })
-})
+    const notes = JSON.parse(fs.readFile(path.join(__dirname, "./db/db.json")));
+    const newNote = req.body;
+    notes.push(newNote);
+    fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(notes));
+    res.json(notes);
+});
 
 // delete any saved notes
 app.delete("/api/notes/:id", (req, res) => {
