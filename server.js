@@ -41,12 +41,12 @@ app.post("/api/notes", (req, res) => {
 });
 
 // delete any saved notes
-app.delete("/api/notes:id", (req, res) => {
-    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
-    const deleteNote = notes.filter((delNote) => delNote.id !==req.params.id);
-    fs.writeFileSync("./db/db.json", JSON.stringify(deleteNote));
+app.delete("/api/notes/:id", (req, res) => {
+    const deleteNote = req.params.id;
+    notes.splice(deleteNote, 1);
+    fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(notes));
     res.json(deleteNote);
-})
+});
 
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
