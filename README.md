@@ -36,10 +36,14 @@ Our assignment for this week is to modify the given starter code to create an ap
 
 ## Screenshots
 
+## Technology
 
+1. Express.js
+2. Node.js
+3. UUID
 
 ## Links
 
 Email: andynguyen_3@hotmail.com <br />
 Github: https://github.com/androneus14 <br />
-Deployed Application: <br />
+Deployed Application: https://androneus14-note-taker.herokuapp.com/ <br />
