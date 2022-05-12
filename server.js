@@ -40,7 +40,7 @@ app.post("/api/notes", (req, res) => {
         notes.push(newNotes);
 
         fs.writeFile(path.join(__dirname, "./db/db.json", JSON.stringify(notes)));
-        res.json(notes);
+        res.json(newNotes);
     })
 })
 
