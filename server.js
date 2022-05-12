@@ -34,14 +34,15 @@ app.get("/api/notes", (req, res) => {
 app.post("/api/notes", (req, res) => {
     const newNote = req.body;
     notes.push(newNote);
-    fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(notes));
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
     res.json(newNote)
-})
+});
 
 // delete any saved notes
 app.delete("/api/notes/:id", (req, res) => {
-    const deleteNote = notes.filter((deleteNote) => deleteNote.id !==req.params.id);
-    fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(deleteNote));
+    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
+    const deleteNote = notes.filter((delNote) => delNote.id !==req.params.id);
+    fs.writeFileSync("./db/db.json", JSON.stringify(deleteNote));
     res.json(deleteNote);
 });
 
