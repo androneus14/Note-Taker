@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const notes = require("./db/db.json");
+const uuid = require("uuid");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -33,6 +34,7 @@ app.get("/api/notes", (req, res) => {
 // posts new notes and joins it in db.json
 app.post("/api/notes", (req, res) => {
     const newNote = req.body;
+    newNote.id = uuid.v4();
     notes.push(newNote);
     fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(notes));
     res.json(newNote);
