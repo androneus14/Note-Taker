@@ -31,9 +31,10 @@ app.get("/api/notes", (req, res) => {
 
 // posts new notes and joins it in db.json
 app.post("/api/notes", (req, res) => {
+    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
     const newNote = req.body;
     notes.push(newNote);
-    fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(notes));
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
     res.json(newNote)
 })
 
