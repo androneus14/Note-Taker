@@ -36,22 +36,23 @@ app.get("/api/notes", (req, res) => {
 app.post("/api/notes", (req, res) => {
     fs.readFile(path.join(__dirname, "./db/db.json"), (data) => {
         const notes = JSON.parse(data);
-        const newNote = {
-            status: 'success',
-            data: req.body,
-        };
-        notes.push(newNote);
-        fs.writeFileSync("./db/db.json", JSON.stringify(notes))
+        const newNotes = req.body;
+        notes.push(newNotes);
+
+        fs.writeFile(path.join(__dirname, "./db/db.json", JSON.stringify(notes)));
         res.json(notes);
-    });
-});
+    })
+})
 
 // delete any saved notes
 app.delete("/api/notes/:id", (req, res) => {
-    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
-    const deleteNote = notes.filter((deleteNote) => deleteNote.id !==req.params.id);
-    fs.writeFileSync("./db/db.json", JSON.stringify(deleteNote));
-    res.json(deleteNote);
+    fs.readFile(path.join(__dirname, "./db/db.json"), (data) => {
+        const notes = JSON.parse(data);
+        const deleteNote = notes.filter((deleteNote) => deleteNote.id !==req.params.id);
+        fs.writeFile(path.join(__dirname, "./db/db.json"), JSON.stringify(deleteNote));
+        res.json(deleteNote);
+    });
 });
 
+// Listen
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
