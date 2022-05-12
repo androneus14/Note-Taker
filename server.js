@@ -34,7 +34,7 @@ app.get("/api/notes", (req, res) => {
 // posts new notes and joins it in db.json
 app.post("/api/notes", (req, res) => {
     const newNote = req.body;
-    newNotes.id = uuid.v4();
+    newNote.id = uuid.v4();
     notes.push(newNote);
     fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(notes));
     res.json(newNote);
