@@ -6,6 +6,7 @@
 - [User Story](#user-story)
 - [Acceptance Criteria](#acceptance-criteria)
 - [Screenshots](#screenshots)
+- [Technology](#technology)
 - [Links](#links)
 
 ## Description
@@ -35,6 +36,10 @@ Our assignment for this week is to modify the given starter code to create an ap
     THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
 
 ## Screenshots
+
+![Note-Taker-1](https://user-images.githubusercontent.com/98381243/168041270-ec26a9e1-0eb3-442d-9888-e9198a621b8e.png)
+
+![Note-Taker-2](https://user-images.githubusercontent.com/98381243/168041383-67b41f63-749d-4723-9244-b1cc90874135.png)
 
 ## Technology
 
