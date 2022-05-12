@@ -40,12 +40,10 @@ app.post("/api/notes", (req, res) => {
 
 // delete any saved notes
 app.delete("/api/notes/:id", (req, res) => {
-    fs.readFile(path.join(__dirname, "./db/db.json"), (data) => {
-        const notes = JSON.parse(data);
-        const deleteNote = notes.filter((deleteNote) => deleteNote.id !==req.params.id);
-        fs.writeFileSync(path.join(__dirname, "./db/db.json"), JSON.stringify(deleteNote));
-        res.json(deleteNote);
-    });
+    const notes = JSON.parse(fs.readFileSync("./db/db.json"));
+    const deleteNote = notes.filter((deleteNote) => deleteNote.id !==req.params.id);
+    fs.writeFileSync("./db/db.json", JSON.stringify(deleteNote));
+    res.json(deleteNote);
 });
 
 // Listen
